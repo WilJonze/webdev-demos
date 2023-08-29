@@ -33,11 +33,15 @@ class Counter {
     walk(isIncrease) {
             const crabContainer = document.getElementById('crabtainer');
             const walkingCrab = document.createElement('div');
+            
             walkingCrab.className = 'emoji';
+            
             walkingCrab.textContent = '🦀';
+            
             crabContainer.appendChild(walkingCrab);
         
             walkingCrab.style.animation = isIncrease ? 'walkAnimation 2s linear forwards' : 'walkAnimationReverse 1s linear forwards';
+            
             walkingCrab.addEventListener('animationend', () => {
               walkingCrab.remove();
             });
@@ -47,21 +51,47 @@ class Counter {
 
 const myCounter = new Counter();
 
+const updateCounterDisplay = () => {
+    counterValue.textContent = `crab count: ${myCounter.getValue()}`;
+};
+
+const handleCrabAnimation = (isIncrease) => {
+    myCounter.walk(isIncrease);
+};
+
 counterIncrement.addEventListener('click', () => {
     myCounter.increment();
-    counterValue.textContent = `crab count: ${myCounter.getValue()}`;
-    myCounter.walk(true);
+    updateCounterDisplay();
+    handleCrabAnimation(true);
 });
 
 counterDecrement.addEventListener('click', () => {
     myCounter.decrement();
-    counterValue.textContent = `crab count: ${myCounter.getValue()}`;
-    if(myCounter.getValue() > 0) {
-        myCounter.walk(false)
-    };
+    updateCounterDisplay();
+    if (myCounter.getValue() > 0) {
+        handleCrabAnimation(false);
+    }
 });
 
 counterReset.addEventListener('click', () => {
     myCounter.reset();
-    counterValue.textContent = `crab count: ${myCounter.getValue()}`;
-})
+    updateCounterDisplay();
+});
+
+
+
+
+
+let books = [
+    { title: "The Great Gatsby", author: "F. Scott Fitzgerald", year: 1925 },
+    { title: "To Kill a Mockingbird", author: "Harper Lee", year: 1960 },
+    { title: "1984", author: "George Orwell", year: 1949 },
+    { title: "Pride and Prejudice", author: "Jane Austen", year: 1813 }
+];
+
+// Sort the array of objects based on the 'year' property in ascending order
+books.sort(function(a, b) {
+    return a.year - b.year;
+});
+
+console.log(books);

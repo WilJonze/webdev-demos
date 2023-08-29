@@ -36,10 +36,16 @@ body {
 
 #all-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: flex-start;
     gap: 10px;
     margin: 5px;
+}
+
+#inc-dec-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .buttons {
